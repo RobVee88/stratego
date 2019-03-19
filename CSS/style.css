@@ -1,0 +1,39 @@
+main {
+    display: grid;
+    grid-template-columns: 1fr 4fr 0.3fr;
+}
+
+.game-board {
+    display: grid;
+    grid-template-columns: repeat(10, 1fr)
+}
+
+.board-square {
+    height: 4rem;
+    border: solid 1px black;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.player-piece, .opponent-piece {
+    width: 3vw;
+    height: 3vw;
+    border: solid 1px black;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.player-pieces, .opponent-pieces {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr)    
+}
+
+header {
+    height: 4rem;
+}
+
+span {
+    width: 1rem;
+}
