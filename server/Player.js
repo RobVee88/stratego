@@ -60,6 +60,10 @@ class Player {
     getGamePiece(rank) {
         return this.gamePieces.find((gamePiece) => gamePiece.rank === rank)
     }
+    // returns a gamepiece object
+    getGamePieceP(position) {
+        return this.gamePieces.find((gamePiece) => gamePiece.position === position)
+    }
     // check if player has square occupied, is so return the gamePiece otherwise return false
     isPlayerOccupied(position) {
         var isOccupied = false

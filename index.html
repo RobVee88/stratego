@@ -14,9 +14,11 @@
     </header>
     <main>
         <aside class="game-piece-list">
+            <h1 class="h1-enemy-army">Enemy army:</h1>
             <div class="opponent-pieces">
-
+                
             </div>
+            <h1 class="h1-your-army">Your army:</h1>
             <div class="player-pieces">
                 
             </div>
@@ -25,12 +27,16 @@
             <div class="game-board">
             
             </div>
-            <div class="buttons">
-                <button class="submit-deployment">Submit deployment</button>
-                <p class="server-messages"></p>
-            </div>
         </section>
     </main>
+    <footer>
+        <div class="buttons">
+                <input class="player-name" type="text">
+                <button class="connect">Connect</button>
+                <button class="submit-deployment">Submit deployment</button>
+                <p class="server-messages"></p>
+        </div>
+    </footer>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js"></script>
     <script>
       const socket = io('http://localhost:3000');

@@ -39,7 +39,9 @@ class Player {
             11: 0
         }
         this.gamePieces.forEach((gamePiece) => {
-            returnGamePieces[gamePiece.rank] += 1
+            if(gamePiece.position !== 0) {
+                returnGamePieces[gamePiece.rank] += 1
+            }
         })
         return returnGamePieces
     }
@@ -67,6 +69,10 @@ class Player {
             }
         })
         return isOccupied
+    }
+    // returns a gamepiece object
+    getGamePieceP(position) {
+        return this.gamePieces.find((gamePiece) => gamePiece.position === position)
     }
 
     // create army for a player
