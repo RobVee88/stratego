@@ -230,8 +230,10 @@ createGameBoard = () => {
 clickPieceHandler = (event) => {
     if (selectedUndeployedGamePiece === null && deploymentPhase === true) {
         var rank = Number(event.target.dataset.spot)
-        selectedUndeployedGamePiece = user.getUndeployedGamePiece(rank)
-        user.removeUndeployedGamePiece(rank)
+        if(user.getUndeployedGamePiece(rank) !== undefined) {
+            selectedUndeployedGamePiece = user.getUndeployedGamePiece(rank)
+            user.removeUndeployedGamePiece(rank)
+        }
         // updatedom
         updateDom()
     }
