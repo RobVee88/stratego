@@ -9,7 +9,7 @@ main {
 }
 
 body {
-    background-image: url('https://i.pinimg.com/originals/39/26/e4/3926e4f8aa7c7894f18a991209eb66a5.jpg');
+    background-image: url('/IMG/background.jpg');
     background-size: cover;
 }
 
@@ -25,7 +25,7 @@ aside {
 .game-board {
     display: grid;
     grid-template-columns: repeat(10, 1fr);
-    background-image: url('https://d2v9y0dukr6mq2.cloudfront.net/video/thumbnail/rW3bOYOuliywwjr22/videoblocks-aerial-view-young-girl-lying-and-resting-on-lawn-on-sunny-day-in-park-on-grass-above-view-woman-on-grass-in-meadow-top-view_rw-9ntwpf_thumbnail-full01.png');
+    background-image: url('/IMG/gameboardbackground.png');
     background-size: cover;
     z-index: -1;
     border: solid 0.2rem black;
@@ -87,7 +87,7 @@ span {
 
 
 .water {
-    background-image: url('https://image.freepik.com/free-photo/rock-background_24836-4.jpg');
+    background-image: url('/IMG/rock.jpg');
     background-size: cover;
     opacity: 1;
 }
@@ -129,6 +129,7 @@ span {
 }
 
 .server-messages {
+    font-size: 1.2rem;
     border: solid 0.1rem black;
     background-color: white;
     opacity: 0.7;

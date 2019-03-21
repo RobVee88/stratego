@@ -11,6 +11,8 @@ var player1 = null
 var player2 = null
 var connectedPlayers = []
 var deployedPlayers = 0
+var firstPlayerName = ''
+var secondPlayerName = ''
 
 clearPlayerGamePieces = function(player) {
     while(player.gamePieces.length > 0){
@@ -46,6 +48,13 @@ io.on('connection', (socket) => {
     var connPlayer = function(res) {
         // player has connected
         // io.emit('player joined', 'a player has joined the game!')
+        if (connectedPlayers.length === 0) {
+            firstPlayerName = res
+        } else if (connectedPlayers.length === 1) {
+            secondPlayerName = res
+        }
+        console.log(firstPlayerName)
+        console.log(secondPlayerName)
         console.log(`${res} joined the game`)
         connectedPlayers.push(socket)
         // if 2 players have joined startDeployment()
@@ -58,33 +67,33 @@ io.on('connection', (socket) => {
     
     var startDeployment = function() {
         // emit to players game has started
-        player1 = new Player("harrie",1)
-        player2 = new Player("grakkol",2)
+        player1 = new Player(firstPlayerName,1)
+        player2 = new Player(secondPlayerName,2)
         player1.createArmy()
         player2.createArmy()
-        io.to(connectedPlayers[0].id).emit('deployment starts', player1)
-        io.to(connectedPlayers[1].id).emit('deployment starts', player2)
+        io.to(connectedPlayers[0].id).emit('deployment starts', {message: 'Please deploy your forces', player: player1, opponentName: player2.name})
+        io.to(connectedPlayers[1].id).emit('deployment starts', {message: 'Please deploy your forces', player: player2, opponentName: player1.name})
         console.log('Start die zooi ouwe!')
     }
 
     var startGame = function() {
         deployedPlayers = 0
         activePlayer = 1
-        io.to(connectedPlayers[0].id).emit('game starts', {message: 'Game starts! Player 1 goes first!', opponentCount: player2.getGamePieceCount(), gamePieces: player2.gamePieces})
-        io.to(connectedPlayers[1].id).emit('game starts', {message: 'Game starts! Player 1 goes first!', opponentCount: player1.getGamePieceCount(), gamePieces: player1.gamePieces})
+        io.to(connectedPlayers[0].id).emit('game starts', {message: `Game starts! ${player1.name} goes first!`, opponentCount: player2.getGamePieceCount(), gamePieces: player2.gamePieces})
+        io.to(connectedPlayers[1].id).emit('game starts', {message: `Game starts! ${player1.name} goes first!`, opponentCount: player1.getGamePieceCount(), gamePieces: player1.gamePieces})
     }
 
     var playerWins = function(player) {
         console.log(player)
         if(player === 1) {
-            io.to(connectedPlayers[0].id).emit('player wins', {message: 'You have won the game!', opponentCount: player2.getGamePieceCount(), gamePieces: player2.gamePieces, playerGamePieces: player1.gamePieces})
-            io.to(connectedPlayers[1].id).emit('player loses', {message: 'You have lost the game', opponentCount: player1.getGamePieceCount(), gamePieces: player1.gamePieces, playerGamePieces: player2.gamePieces})
+            io.to(connectedPlayers[0].id).emit('player wins', {message: `Congratulations ${player1.name}. You have won the battle!`, opponentCount: player2.getGamePieceCount(), gamePieces: player2.gamePieces, playerGamePieces: player1.gamePieces})
+            io.to(connectedPlayers[1].id).emit('player loses', {message: 'You have lost the battle', opponentCount: player1.getGamePieceCount(), gamePieces: player1.gamePieces, playerGamePieces: player2.gamePieces})
             activePlayer = null
             deployedPlayers = 0
             console.log('Game ended, player 1 wins!')
         } else if (player === 2) {
-            io.to(connectedPlayers[1].id).emit('player wins', {message: 'You have won the game!', opponentCount: player2.getGamePieceCount(), gamePieces: player2.gamePieces, playerGamePieces: player1.gamePieces})
-            io.to(connectedPlayers[0].id).emit('player loses', {message: 'You have lost the game', opponentCount: player1.getGamePieceCount(), gamePieces: player1.gamePieces, playerGamePieces: player2.gamePieces})
+            io.to(connectedPlayers[1].id).emit('player wins', {message: `Congratulations ${player2.name}. You have won the battle!`, opponentCount: player2.getGamePieceCount(), gamePieces: player2.gamePieces, playerGamePieces: player1.gamePieces})
+            io.to(connectedPlayers[0].id).emit('player loses', {message: 'You have lost the battle', opponentCount: player1.getGamePieceCount(), gamePieces: player1.gamePieces, playerGamePieces: player2.gamePieces})
             activePlayer = null
             deployedPlayers = 0
             console.log('Game ended, player 2 wins!')
@@ -96,9 +105,9 @@ io.on('connection', (socket) => {
     socket.on('disconnect', function(reason) {
         console.log('a player has disconnected')
         console.log(reason)
-        // var index = connectedPlayers.indexOf(socket)
-        // connectedPlayers.splice(index, 1)
-        //console.log(connectedPlayers.length)
+        var index = connectedPlayers.indexOf(socket)
+        connectedPlayers.splice(index, 1)
+        console.log(connectedPlayers.length)
      })
     
     socket.on('deployment complete', function(res) {
@@ -108,7 +117,7 @@ io.on('connection', (socket) => {
             })
             deployedPlayers++
             if(deployedPlayers < 2) {
-                io.to(connectedPlayers[0].id).emit('wait for other player deployment', 'please stand by while your opponent deploys his/her army')
+                io.to(connectedPlayers[0].id).emit('wait for other player deployment', `please stand by while ${player2.name} deploys his/her army`)
             } else {
                 startGame()
             }
@@ -118,7 +127,7 @@ io.on('connection', (socket) => {
             })
             deployedPlayers++
             if(deployedPlayers < 2) {
-                io.to(connectedPlayers[1].id).emit('wait for other player deployment', 'please stand by while your opponent deploys his/her army')
+                io.to(connectedPlayers[1].id).emit('wait for other player deployment', `please stand by while ${player1.name} deploys his/her army`)
             } else {
                 startGame()
             }
@@ -159,8 +168,8 @@ io.on('connection', (socket) => {
             }
             if (activePlayer !== null) {
                 activePlayer = 2
-                io.to(connectedPlayers[1].id).emit('player turn', {message: 'It is your turn now!', opponentCount: player1.getGamePieceCount(), gamePieces: player1.gamePieces, playerGamePieces: player2.gamePieces})
-                io.to(connectedPlayers[0].id).emit('opponent turn', {message: 'Please wait while your opponent makes their move', opponentCount: player2.getGamePieceCount(), gamePieces: player2.gamePieces, playerGamePieces: player1.gamePieces})
+                io.to(connectedPlayers[1].id).emit('player turn', {message: `It is your turn ${player2.name}!`, opponentCount: player1.getGamePieceCount(), gamePieces: player1.gamePieces, playerGamePieces: player2.gamePieces})
+                io.to(connectedPlayers[0].id).emit('opponent turn', {message: `Please wait while ${player2.name} makes their move`, opponentCount: player2.getGamePieceCount(), gamePieces: player2.gamePieces, playerGamePieces: player1.gamePieces})
             }
         } else if (res.player === 2) {
             clearPlayerGamePieces(player2)
@@ -196,8 +205,8 @@ io.on('connection', (socket) => {
             }
             if(activePlayer !== null) {
                 activePlayer = 1
-                io.to(connectedPlayers[0].id).emit('player turn', {message: 'It is your turn now!', opponentCount: player2.getGamePieceCount(), gamePieces: player2.gamePieces, playerGamePieces: player1.gamePieces})
-                io.to(connectedPlayers[1].id).emit('opponent turn', {message: 'Please wait while your opponent makes their move', opponentCount: player1.getGamePieceCount(), gamePieces: player1.gamePieces, playerGamePieces: player2.gamePieces})
+                io.to(connectedPlayers[0].id).emit('player turn', {message: `It is your turn ${player1.name}!`, opponentCount: player2.getGamePieceCount(), gamePieces: player2.gamePieces, playerGamePieces: player1.gamePieces})
+                io.to(connectedPlayers[1].id).emit('opponent turn', {message: `Please wait while ${player1.name} makes their move`, opponentCount: player1.getGamePieceCount(), gamePieces: player1.gamePieces, playerGamePieces: player2.gamePieces})
   
             }
         }

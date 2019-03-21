@@ -74,7 +74,7 @@ getPossibleMoves = (gamePiece) => {
     if (gamePiece.rank === 2) {
         // move right
         for(var i = gamePiece.position; i % 10 !== 0;i++) {
-            // needs check to see if position is already taken by friendly piece
+            // check to see if position is already taken by friendly piece
             if((user.isPlayerOccupied(i) && i !== gamePiece.position) || isWater(i)) {
                 break
             }
@@ -83,11 +83,16 @@ getPossibleMoves = (gamePiece) => {
             }
             if(isOpponentOccupied(i)) {
                 break
+            }
+            if(i % 10 === 9) {
+                if(!user.isPlayerOccupied(i + 1) && !isWater(i + 1)) {
+                    possibleMoves.push(i + 1)
+                }
             }
         }
         // move left
         for(var i = gamePiece.position; i % 10 !== 1;i--) {
-            // needs check to see if position is already taken by friendly piece
+            // check to see if position is already taken by friendly piece
             if((user.isPlayerOccupied(i) && i !== gamePiece.position) || isWater(i)) {
                 break
             }
@@ -97,11 +102,18 @@ getPossibleMoves = (gamePiece) => {
             if(isOpponentOccupied(i)) {
                 break
             }
+            if(i % 10 === 2) {
+                if(!user.isPlayerOccupied(i - 1) && !isWater(i - 1)) {
+                    possibleMoves.push(i - 1)
+                }
+            }
         }
         // move down
-        for(var i = gamePiece.position; i < 91;i = i + 10) {
-            debugger
-            // needs check to see if position is already taken by friendly piece
+        var i = gamePiece.position
+        while(i < 91) {
+        // for(var i = gamePiece.position; i < 91;i = i + 10) {
+            i = i + 10
+            // check to see if position is already taken by friendly piece
             if((user.isPlayerOccupied(i) && i !== gamePiece.position) || isWater(i)) {
                 break
             }
@@ -113,8 +125,11 @@ getPossibleMoves = (gamePiece) => {
             }
         }
         // move up
-        for(var i = gamePiece.position; i > 10;i = i - 10) {
-            // needs check to see if position is already taken by friendly piece
+        var i = gamePiece.position
+        while(i > 10) {
+        // for(var i = gamePiece.position; i > 10;i = i - 10) {
+            i = i - 10
+            //  check to see if position is already taken by friendly piece
             if((user.isPlayerOccupied(i) && i !== gamePiece.position) || isWater(i)) {
                 break
             }
@@ -328,16 +343,17 @@ updateDom = () => {
 }
 
 submitDeployment = () => {
-    // if (user.undeployedGamePieces.length === 0) {
+    if (user.undeployedGamePieces.length === 0) {
         btnSubmitDeployment.style.visibility = 'hidden'
         hideDeploymentZone()
         socket.emit('deployment complete', {gamePieces: user.gamePieces, player: user.player})
-    // }
+    }
 }
 
 connectToServer = () => {
     btnConnect.style.visibility = 'hidden'
     inputPlayerName.style.visibility = 'hidden'
+    pServerMsg.textContent = "Waiting for other player"
     socket.emit('new player', inputPlayerName.value)
 }
 
@@ -367,8 +383,9 @@ var opponentGamePieces = []
 
 // wait for server responses
 socket.on('deployment starts', (res) => {
-    user = new Player(res.name, Number(res.player))
-    user.undeployedGamePieces = [...res.undeployedGamePieces]
+    user = new Player(res.player.name, Number(res.player.player))
+    user.undeployedGamePieces = [...res.player.undeployedGamePieces]
+    pServerMsg.textContent = res.message
     setupDeploymentAside()
 })
 socket.on('wait for other player deployment', (res) => {

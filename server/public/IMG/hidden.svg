@@ -1,43 +1,15 @@
-<?xml version="1.0" encoding="iso-8859-1"?>
-<!-- Generator: Adobe Illustrator 18.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
-<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
-<svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-	 viewBox="0 0 318.293 318.293" style="enable-background:new 0 0 318.293 318.293;" xml:space="preserve">
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 23.0.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1"
+	 id="svg2" inkscape:version="0.43" sodipodi:docbase="/home/sjoerd0/docs/images/stratego" sodipodi:docname="generaal.svg" sodipodi:version="0.32" xmlns:cc="http://web.resource.org/cc/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:sodipodi="http://inkscape.sourceforge.net/DTD/sodipodi-0.dtd" xmlns:svg="http://www.w3.org/2000/svg"
+	 xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 595.3 841.9"
+	 style="enable-background:new 0 0 595.3 841.9;" xml:space="preserve">
+<sodipodi:namedview  bordercolor="#666666" borderopacity="1.0" id="base" inkscape:current-layer="layer2" inkscape:cx="621.95325" inkscape:cy="576.45922" inkscape:pageopacity="0.0" inkscape:pageshadow="2" inkscape:window-height="946" inkscape:window-width="1264" inkscape:window-x="0" inkscape:window-y="0" inkscape:zoom="0.50259871" pagecolor="#ffffff">
+	</sodipodi:namedview>
 <g>
-	<path d="M159.148,0c-52.696,0-95.544,39.326-95.544,87.662h47.736c0-22.007,21.438-39.927,47.808-39.927
-		c26.367,0,47.804,17.92,47.804,39.927v6.929c0,23.39-10.292,34.31-25.915,50.813c-20.371,21.531-45.744,48.365-45.744,105.899
-		h47.745c0-38.524,15.144-54.568,32.692-73.12c17.368-18.347,38.96-41.192,38.96-83.592v-6.929C254.689,39.326,211.845,0,159.148,0z
-		"/>
-	<rect x="134.475" y="277.996" width="49.968" height="40.297"/>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
+	<path d="M238.2,554.3l-1.8-23.8c-5.5-49.3,11-103.2,56.6-158.1c41.1-48.4,64-84.1,64-125.2c0-46.6-29.2-77.7-86.8-78.6
+		c-32.9,0-69.4,11-92.3,28.3L156,139.5c30.2-21.9,82.2-36.5,130.7-36.5c105.1,0,152.6,64.9,152.6,134.3c0,62.1-34.7,106.9-78.6,159
+		c-40.2,47.5-54.8,87.7-52.1,134.3l0.9,23.8H238.2z M218.1,682.3c0-33.8,22.8-57.6,54.8-57.6c32,0,53.9,23.8,53.9,57.6
+		c0,32-21,56.7-54.8,56.7C240.1,738.9,218.1,714.2,218.1,682.3z"/>
 </g>
 </svg>
