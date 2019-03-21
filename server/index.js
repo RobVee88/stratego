@@ -93,11 +93,12 @@ io.on('connection', (socket) => {
 
     socket.on('new player', connPlayer)
 
-    socket.on('disconnect', function() {
+    socket.on('disconnect', function(reason) {
         console.log('a player has disconnected')
+        console.log(reason)
         // var index = connectedPlayers.indexOf(socket)
         // connectedPlayers.splice(index, 1)
-        console.log(connectedPlayers.length)
+        //console.log(connectedPlayers.length)
      })
     
     socket.on('deployment complete', function(res) {
