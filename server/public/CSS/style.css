@@ -1,0 +1,135 @@
+* {
+    font-family: 'Germania One', cursive;
+    font-weight: bold;
+}
+main {
+    display: grid;
+    grid-template-columns: 0.3fr 1fr 4fr 0.3fr;
+    background-color: rgb(0,0,0, 0.1); 
+}
+
+body {
+    background-image: url('https://i.pinimg.com/originals/39/26/e4/3926e4f8aa7c7894f18a991209eb66a5.jpg');
+    background-size: cover;
+}
+
+aside {
+    background-color: grey;
+    opacity: 0.8;
+    border-left: solid 0.2rem black;
+    border-top: solid 0.2rem black;
+    border-bottom: solid 0.2rem black;
+    padding-left: 0.5rem;
+}
+
+.game-board {
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    background-image: url('https://d2v9y0dukr6mq2.cloudfront.net/video/thumbnail/rW3bOYOuliywwjr22/videoblocks-aerial-view-young-girl-lying-and-resting-on-lawn-on-sunny-day-in-park-on-grass-above-view-woman-on-grass-in-meadow-top-view_rw-9ntwpf_thumbnail-full01.png');
+    background-size: cover;
+    z-index: -1;
+    border: solid 0.2rem black;
+}
+
+.board-square {
+    height: 4rem;
+    border: solid 0.01rem rgba(211, 211, 211, 0.63);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.player-piece, .opponent-piece {
+    width: 3vw;
+    height: 3vw;
+    border: solid 1px black;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.player-pieces, .opponent-pieces {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-row-gap: 0.5rem;
+    grid-column-gap: 0.2rem;  
+}
+
+header {
+    height: 4rem;
+    text-align: center;
+}
+
+footer {
+    text-align: center;
+}
+
+h1 {
+    font-size: 2.5rem;
+    opacity: 1;
+}
+
+button {
+    font-size: 1rem;
+}
+
+input {
+    font-size: 1rem;
+}
+
+span {
+    width: 1rem;
+}
+
+.opponent-pieces {
+    margin-bottom: 3rem;
+}
+
+
+.water {
+    background-image: url('https://image.freepik.com/free-photo/rock-background_24836-4.jpg');
+    background-size: cover;
+    opacity: 1;
+}
+
+.player1 {
+    background-color: rgb(76, 76, 241);
+    background-size: contain;
+    opacity: 0.8;
+    z-index: 1;
+}
+
+.player2 {
+    background-color: red;
+    background-size: contain;
+    opacity: 0.8;
+    z-index: 1;
+}
+.deployment-option {
+    opacity: 0.5;
+    background-size: contain;
+    background-color: green;
+    z-index: 1;
+}
+
+.possible-move {
+    border-color: green;
+    background-color: green;
+    opacity: 0.5;
+    z-index: 1;
+}
+
+.aside-button {
+    text-align: center;
+    margin-top: 1rem;
+}
+
+.buttons {
+    margin-top: 0.2rem;
+}
+
+.server-messages {
+    border: solid 0.1rem black;
+    background-color: white;
+    opacity: 0.7;
+}

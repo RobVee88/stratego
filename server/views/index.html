@@ -5,14 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Stratego</title>
-    <link rel="stylesheet" href="CSS/reset.css"> 
-    <link rel="stylesheet" href="CSS/style.css">
+    <link rel="stylesheet" href="/CSS/reset.css"> 
+    <link rel="stylesheet" href="/CSS/style.css">
 </head>
 <body>
     <header>
         <h1>STRATEGO</h1>
     </header>
     <main>
+        <div></div>
         <aside class="game-piece-list">
             <h1 class="h1-enemy-army">Enemy army:</h1>
             <div class="opponent-pieces">
@@ -20,7 +21,10 @@
             </div>
             <h1 class="h1-your-army">Your army:</h1>
             <div class="player-pieces">
-                
+
+            </div>
+            <div class="aside-button">
+                <button class="submit-deployment">Submit deployment</button>
             </div>
         </aside>
         <section>
@@ -28,20 +32,19 @@
             
             </div>
         </section>
+        <div></div>
     </main>
     <footer>
         <div class="buttons">
                 <input class="player-name" type="text">
                 <button class="connect">Connect</button>
-                <button class="submit-deployment">Submit deployment</button>
                 <p class="server-messages"></p>
         </div>
     </footer>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js"></script>
     <script>
-      const socket = io('http://localhost:3000');
+        var socket = io()
     </script>
-    <script src="JS/Player.js"></script>
-    <script src="JS/stratego.js"></script>
+    <script src="/JS/Player.js"></script>
+    <script src="/JS/stratego.js"></script>
 </body>
-</html>

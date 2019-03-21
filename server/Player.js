@@ -42,7 +42,6 @@ class Player {
         this.gamePieces.forEach((gamePiece) => {
             returnGamePieces[gamePiece.rank] += 1
         })
-        console.log(returnGamePieces)
         return returnGamePieces
     }
     removeDeployedGamePiece(position) {

@@ -225,6 +225,7 @@ clickPieceHandler = (event) => {
 // setup the aside for deployment phase
 setupDeploymentAside = () => {
     h1Your.style.visibility = 'visible'
+    btnSubmitDeployment.style.visibility = 'visible'
     var playerPieces = document.querySelector('.player-pieces')
     for(i = 0; i < 12; i++) {
         var playerPiece = document.createElement('div')
@@ -353,6 +354,7 @@ btnConnect.addEventListener('click', connectToServer)
 var btnSubmitDeployment = document.querySelector('.submit-deployment')
 var pServerMsg = document.querySelector('.server-messages')
 btnSubmitDeployment.addEventListener('click', submitDeployment)
+btnSubmitDeployment.style.visibility = 'hidden'
 
 var selectedUndeployedGamePiece = null
 var selectedGamePiece = null
@@ -419,11 +421,37 @@ socket.on('opponent turn', (res) => {
 })
 
 socket.on('player wins', (res) => {
-
+    console.log(res.message)
+    playerTurn = false
+    pServerMsg.textContent = res.message
+    opponentGamePieceCount = res.opponentCount
+    clearOpponentGamePieces()
+    res.gamePieces.forEach((gamePiece) => {
+        opponentGamePieces.push(gamePiece)
+    })
+    clearGamePieces()
+    res.playerGamePieces.forEach((gamePiece) => {
+        user.gamePieces.push(gamePiece)
+    })
+    //updateDom
+    updateDom()
 })
 
 socket.on('player loses', (res) => {
-    
+    console.log(res.message)
+    playerTurn = false
+    pServerMsg.textContent = res.message
+    opponentGamePieceCount = res.opponentCount
+    clearOpponentGamePieces()
+    res.gamePieces.forEach((gamePiece) => {
+        opponentGamePieces.push(gamePiece)
+    })
+    clearGamePieces()
+    res.playerGamePieces.forEach((gamePiece) => {
+        user.gamePieces.push(gamePiece)
+    })
+    //updateDom
+    updateDom()
 })
 
 // user.player (1 or 2)
